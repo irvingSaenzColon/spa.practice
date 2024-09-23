@@ -1,0 +1,11 @@
+{
+  "name": "lifttracker",
+  "version": "1.0.0",
+  "description": "Basic app to get control of progression of weight during a session of training",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Once",
+  "license": "ISC"
+}
