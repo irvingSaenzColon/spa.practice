@@ -1,0 +1,218 @@
+:root {
+	--rich-black: #011023;
+	--test: #071c36;
+	--orange-peel: #ffb23f;
+	--payne-gray: #5f718d;
+	--white: #f7f7f7;
+
+	--borer-radius: 12px;
+	--padding-md: 8px 16px;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	font-family: "Lexend Deca", sans-serif;
+}
+
+h2 {
+	font-size: 2.4rem;
+}
+
+button {
+	cursor: pointer;
+}
+
+input, textarea {
+	font-family: "Lexend Deca", sans-serif;
+	font-size: 1.5rem;
+	color: white;
+	background-color: inherit;
+	-webkit-background-clip: text !important;
+}
+
+input:-webkit-autofill {
+	background-color: inherit;
+}
+
+.form__input>input:-internal-autofill-selected {
+	background-color: inherit;
+}
+
+.landpage-title {
+	text-align: center;
+	font-size: 6.4rem;
+	color: var(--rich-black);
+}
+
+.slogan-page {
+	font-size: 2.4rem;
+	color: var(--test);
+}
+
+.background-dark {
+	color: var(--white);
+	background-color: var(--rich-black);
+}
+
+.background-primary {
+	background-color: var(--orange-peel);
+}
+
+.flex {
+	display: flex;
+	width: 100%;
+}
+
+.flex--v-center {
+	align-items: center;
+}
+
+.flex--h-center {
+	justify-content: center;
+}
+
+.flex--column {
+	flex-direction: column;
+}
+
+.flex--center {
+	align-self: center;
+}
+
+.flex--gap-md {
+	gap: 10px;
+}
+
+.flex--between {
+	justify-content: space-between;
+}
+
+.flex--evenly {
+	justify-content: space-around;
+}
+
+.full-page {
+	height: 100vh;
+}
+
+.y--full {
+	height: 100%;
+}
+
+.padding--md {
+	padding: 8px 16px;
+}
+
+.flex-grow-1 {
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+
+.width-50 {
+	width: 50%;
+}
+
+.landing__intro {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	justify-content: center;
+	padding: 8px 16px;
+	text-align: center;
+}
+
+.form__login {
+	max-width: 450px;
+	width: 100%;
+	padding: 8px 16px;
+	background-color: var(--rich-black);
+}
+
+.form__input {
+	display: block;
+	position: relative;
+	margin: 4px 0 16px 0;
+	color: var(--payne-gray);
+	border: 1px solid  currentColor;
+	border-radius: var(--borer-radius);
+	background-color: inherit;
+	transition: color 0.25s ease;
+}
+
+.form__input>span {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	color: inherit;
+	font-size: 1.5rem;
+	width: calc(100% - 10px);
+	transform: translate(8px, 8px);
+	transition: transform 0.25s ease, font-size 0.25s ease, width 0.25s ease, color 0.25s ease;
+	background-color: inherit;
+}
+
+.form__input>input {
+	display: block;
+	width: 100%;
+	padding: 8px;
+	color: var(--payne-gray);
+	border: unset;
+	border-radius: inherit;
+	background-color: inherit;
+}
+
+.form__input>input:focus {
+	outline: unset;
+	color: var(--orange-peel);
+}
+
+.form__input:has(>input:focus) {
+	color: var(--orange-peel);	
+}
+
+.form__input:has(>input:focus)>span {
+	width: auto;
+	font-size: 1.2rem;
+	color: var(--orange-peel);
+	transform: translate(0px, -8px);	
+}
+
+.button {
+	padding: var(--padding-md);
+	border-radius: var(--borer-radius);
+	font-size: 1.5rem;
+}
+
+.button--primary {
+	border: 1px solid var(--orange-peel);
+	color: var(--rich-black);
+	background-color: var(--orange-peel);
+	transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.button--white {
+	border: 1px solid var(--white);
+	color: var(--rich-black);
+	background-color: var(--white);
+}
+
+.button__icon {
+	width: 25px;
+	height: 25px;
+}
+
+.button--primary:hover {
+	background-color: var(--rich-black);
+	color: var(--orange-peel);
+}
+
+.button--width-full {
+	width: 100%;
+}
