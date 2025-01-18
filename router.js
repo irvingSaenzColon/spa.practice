@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		const routeFound = routes.find((route) => route.path === pathname || route.path === "404");
 		let htmlData = "";
 		if(routeFound) {
-			let routeView = window.location.origin+"/Lifter.io/"+routeFound.view;
+			let routeView = window.location.origin+"/"+routeFound.view;
 			htmlData = await window.fetch(routeView).then(data => data.text());
 			app.innerHTML = htmlData;
 		} else {
