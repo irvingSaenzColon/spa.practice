@@ -1,17 +1,23 @@
 const routes = [
 	{
 		path:"",
-		view:"src/views/home.html"
+		view:"views/home.html"
 	},
 	{
 		path:"profile",
-		view:"src/views/profile.html"
+		view:"views/profile.html"
+	},
+	{
+		path: "signin",
+		view: "views/signin.html"
 	},
 	{
 		path:"404",
-		view:"src/views/notFound.html"
+		view:"views/notFound.html"
 	}
 ];
+
+const session = window.localStorage.getItem('SESSION_V1');
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -20,8 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	async function handleRoute() {
 		let pathname = window.location.pathname.split("/");
-		pathname.splice(0, 2);
-		pathname = pathname.join("/");
+		pathname = pathname[pathname.length - 1];
+		if(!session && !pathname.includes('signin')) {
+			window.location.pathname = 'signin';
+		}
 		const routeFound = routes.find((route) => route.path === pathname || route.path === "404");
 		let htmlData = "";
 		if(routeFound) {
@@ -47,5 +55,5 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	initAnchors();
-   	handleRoute();
+  handleRoute();
 });
