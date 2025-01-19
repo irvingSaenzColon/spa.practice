@@ -20,7 +20,7 @@ const fileTypes = [
     extension: 'ico'
   }
 ];
-let rootPath = null;
+
 
 const server = http.createServer(async (req, res) => {
   let buffer = null
@@ -39,7 +39,8 @@ const server = http.createServer(async (req, res) => {
         buffer = await fs.readFile(newPath);
       } catch(e) {
         res.statusCode = 404
-        buffer = ''; 
+        buffer = '';
+        console.error('file not found');
       }
     }
   } else {

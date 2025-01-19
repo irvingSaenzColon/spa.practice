@@ -2,7 +2,20 @@
 
 Esta será una app para poder llevar a cabo el rastreo de el progreso en el gimnasio, la finalidad es poder implementar funcionalidades sin la necesidad de depender de librería externas además, esto permitirá que tenga un control acerca de las funcionalidades que desee
 
-Cosas que deseo tener en la applicación
+## Ejecutar la app
+Para poder ejecutar la aplicación es necesario tener node o en su defecto nodemon y correr cualquiera de los siguientes comandos
+
+Para node
+```terminal
+node app.js
+```
+
+Para nodemon
+```terminal
+nodemon app.js
+```
+
+## Cosas que deseo tener en la applicación
 * Agregar rutinas: Las rutinas deben tener un nombre
 * Eliminar rutinas
 * Modificar rutinas
