@@ -9,7 +9,8 @@ const routes = [
 	},
 	{
 		path: "signin",
-		view: "views/signin.html"
+		view: "views/signin.html",
+		controller: "controllers/signin.js"
 	},
 	{
 		path:"404",
@@ -21,10 +22,12 @@ const session = window.localStorage.getItem('SESSION_V1');
 
 
 document.addEventListener('DOMContentLoaded', function() {
+	const root = document.getElementById('root');
 	const app = document.getElementById("main-content");
-
-
+	
+	
 	async function handleRoute() {
+		removeControllerFiles();
 		let pathname = window.location.pathname.split("/");
 		pathname = pathname[pathname.length - 1];
 		if(!session && !pathname.includes('signin')) {
@@ -35,6 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		if(routeFound) {
 			let routeView = window.location.origin+"/"+routeFound.view;
 			htmlData = await window.fetch(routeView).then(data => data.text());
+			if(routeFound.controller) {
+				await window.fetch(routeFound.controller).then(data => data.text);
+				loadControllerFile(routeFound.controller);
+			}
 			app.innerHTML = htmlData;
 		} else {
 			app.innerHTML = "No se contró nada";
@@ -52,6 +59,25 @@ document.addEventListener('DOMContentLoaded', function() {
 				handleRoute();
 			});
 		}
+	}
+
+	
+	function removeControllerFiles(controllerFile) {
+		const scriptsController = document.getElementsByTagName('script');
+		for(let i = 0; i < scriptsController.length; i++) {
+			if(scriptsController[i].hasAttribute('data-controller')) {
+				scriptsController[i].parentNode.removeChild(scriptsController[i]);
+			}
+		}
+	}
+
+
+	async function loadControllerFile(filePath) {
+		const scriptTag = document.createElement('script');
+		scriptTag.setAttribute('data-controller', 'true');
+		scriptTag.setAttribute('src', filePath);
+		scriptTag.setAttribute('type', 'text/javascript');
+		root.appendChild(scriptTag);
 	}
 
 	initAnchors();
