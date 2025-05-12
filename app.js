@@ -1,7 +1,12 @@
-const http = require('http');
-const fs = require('fs/promises');
-const path = require('path');
+import http from 'http';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const entryPoint = path.join(__dirname, 'src', 'index.html');
+const ignoreRoutes = [
+  '/.well-known/appspecific/com.chrome.devtools.json',
+]
 const fileTypes = [
   {
     mimetype: 'text/javascript',
@@ -20,12 +25,18 @@ const fileTypes = [
     extension: 'ico'
   }
 ];
+//process.env = envReader(path.join(__dirname, 'src/.env')) || null;
 
 
 const server = http.createServer(async (req, res) => {
   let buffer = null
   let reqParts = req.url.split('/');
   const lastPart = reqParts[reqParts.length - 1];
+  if(ignoreRoutes.includes(req.url)) {
+    res.end();
+    return;
+  }
+  console.log(req.url);
   if(req.url && lastPart.includes('.')) {
     let extension = lastPart.split('.');
     extension = extension[extension.length - 1];
@@ -46,7 +57,7 @@ const server = http.createServer(async (req, res) => {
   } else {
     res.statusCode = 200
     res.setHeader('Content-Type', 'text/html');
-    buffer = await fs.readFile(entryPoint)
+    buffer = await fs.readFile(entryPoint);
   }
   res.write(buffer);
   res.end();

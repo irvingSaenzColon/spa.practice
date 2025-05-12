@@ -9,15 +9,16 @@
 		<section class="flex flex--column flex--evenly y--full padding--md">
 			<section class="form__login">
 				<h2>Inicia Sesion</h2>
+				<button id="btn-opnmdl">Abrir modal</button>
 			</section>
-			<form id="loginForm" class="form__login" autocomplete="off">
+			<form e-submit="OnSignIn(login)" id="loginForm" class="form__login" autocomplete="off">
 				<label for="username-input" class="form__input">
 					<span>Nombre de usuario</span>
-					<input id="username-input" type="text">
+					<input id="username-input" type="text" model="login.username">
 				</label>
 				<label for="password-input" class="form__input">
 					<span>Contraseña</span>
-					<input id="password-input" type="password">
+					<input id="password-input" type="current-password" model="login.password">
 				</label>
 				<button class="button button--primary button--width-full" type="submit">Iniciar sesion</button>
 			</form>
